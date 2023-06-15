@@ -23,7 +23,7 @@ kubectl get pods -n kube-system -o wide | grep node-local-dns <br />
 
 #### Cluster Overprovisioner : (https://wdenniss.com/gke-autopilot-spare-capacity)
 #### Run the below commands to install Cluster Overprovisioner <br />
-<br />
+
 kubectl apply -f class.yaml <br />
 kubectl apply -f ballon-deploy.yaml <br />
 
