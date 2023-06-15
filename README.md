@@ -7,24 +7,24 @@
 export ZONE=us-east4-a <br />
 gcloud container clusters create odin-addons-test --zone=$ZONE --enable-dataplane-v2 --enable-autoscaling --num-nodes 2 --min-nodes 2 --max-nodes 5 --addons=NodeLocalDNS <br />
 <br />
-#### Verification:(Wait for few mins) <br />
-#### Run the below command to validate the Cilium add-on <br />
+#### Verification:(Wait for few mins)
+#### Run the below command to validate the Cilium add-on
 kubectl -n kube-system get pods -l k8s-app=cilium -o wide <br />
-<br />
-#### Run the below command to validate the Horizontal pod autoscaler add-on <br />
+
+#### Run the below command to validate the Horizontal pod autoscaler add-on 
 kubectl get pods -n kube-system -o wide | grep metrics-server <br /> 
-<br />
-#### Run the below command to validate the Node Local DNS Cache add-on <br />
+
+#### Run the below command to validate the Node Local DNS Cache add-on
 kubectl get pods -n kube-system -o wide | grep node-local-dns <br />
-<br />
-#### Cluster Overprovisioner : https://wdenniss.com/gke-autopilot-spare-capacity <br />
+
+#### Cluster Overprovisioner : https://wdenniss.com/gke-autopilot-spare-capacity
 #### Run the below commands to install Cluster Overprovisioner <br />
 <br />
 kubectl apply -f class.yaml <br />
 kubectl apply -f ballon-deploy.yaml <br />
-<br />
-#### Sealed Secrets <br />
-#### Run the below commands to install and validate Sealed Secrets <br />
+
+#### Sealed Secrets
+#### Run the below commands to install and validate Sealed Secrets
 helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets <br />
 echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json <br />
 kubeseal -f mysecret.json mysealedsecret.json <br />
@@ -34,9 +34,9 @@ kubeseal -f mysecret.json mysealedsecret.json <br />
 helm repo add cluster-proportional-autoscaler https://kubernetes-sigs.github.io/cluster-proportional-autoscaler <br />
 helm repo update <br />
 helm upgrade --install cluster-proportional-autoscaler cluster-proportional-autoscaler/cluster-proportional-autoscaler --values prop.yaml <br />
-<br />
-#### Istio:  <br />
-#### Run the below commands to install Istio (https://istio.io/v1.16/docs/setup/install/helm/) <br />
+
+#### Istio: 
+#### Run the below commands to install Istio (https://istio.io/v1.16/docs/setup/install/helm/)
 helm repo add istio https://istio-release.storage.googleapis.com/charts <br />
 kubectl create namespace istio-system <br />
 helm install istio-base istio/base -n istio-system <br />
