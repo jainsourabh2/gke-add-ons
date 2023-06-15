@@ -1,9 +1,10 @@
 #### Pre-requisite:
+
 1. Kubernets, Compute , Network APIs need to be enabled on the project. <br />
 2. Subnet available for the mentioned zone region. <br />
 
 ### Open the GCP shell and run the below steps to create a GKE cluster.
-<b>--enable-dataplane-v2 will add Cilium add-on</b>
+#### --enable-dataplane-v2 will add Cilium add-on
 #### --enable-dataplane-v2 will add Cluster Autoscaler
 #### --addons=NodeLocalDNS will add Node Local DNS Cache
 
