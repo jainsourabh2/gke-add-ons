@@ -6,7 +6,7 @@
 
 export ZONE=us-east4-a <br />
 gcloud container clusters create odin-addons-test --zone=$ZONE --enable-dataplane-v2 --enable-autoscaling --num-nodes 2 --min-nodes 2 --max-nodes 5 --addons=NodeLocalDNS <br />
-<br />
+
 #### Verification:(Wait for few mins)
 #### Run the below command to validate the Cilium add-on
 kubectl -n kube-system get pods -l k8s-app=cilium -o wide <br />
