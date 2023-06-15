@@ -1,9 +1,9 @@
 #### Pre-requisite:
 1. Kubernets, Compute , Network APIs need to be enabled on the project. <br />
 2. Subnet available for the mentioned zone region. <br />
-<br />
+
 #### Open the GCP shell and run the below steps to create a GKE cluster.
-<br />
+
 export ZONE=us-east4-a <br />
 gcloud container clusters create odin-addons-test --zone=$ZONE --enable-dataplane-v2 --enable-autoscaling --num-nodes 2 --min-nodes 2 --max-nodes 5 --addons=NodeLocalDNS <br />
 <br />
