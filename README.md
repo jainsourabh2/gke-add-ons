@@ -25,7 +25,7 @@ kubectl apply -f ballon-deploy.yaml \n
 
 #### Sealed Secrets
 #### Run the below commands to install and validate Sealed Secrets
-helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets<br>
+helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets <br />
 echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json \n
 kubeseal -f mysecret.json mysealedsecret.json \n
 
