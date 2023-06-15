@@ -3,6 +3,9 @@
 2. Subnet available for the mentioned zone region. <br />
 
 #### Open the GCP shell and run the below steps to create a GKE cluster.
+#### --enable-dataplane-v2 will add Cilium add-on
+#### --enable-dataplane-v2 will add Cluster Autoscaler
+#### --addons=NodeLocalDNS will add Node Local DNS Cache
 
 export ZONE=us-east4-a <br />
 gcloud container clusters create odin-addons-test --zone=$ZONE --enable-dataplane-v2 --enable-autoscaling --num-nodes 2 --min-nodes 2 --max-nodes 5 --addons=NodeLocalDNS <br />
@@ -17,13 +20,13 @@ kubectl get pods -n kube-system -o wide | grep metrics-server <br />
 #### Run the below command to validate the Node Local DNS Cache add-on
 kubectl get pods -n kube-system -o wide | grep node-local-dns <br />
 
-#### Cluster Overprovisioner : https://wdenniss.com/gke-autopilot-spare-capacity
+#### Cluster Overprovisioner : (https://wdenniss.com/gke-autopilot-spare-capacity)
 #### Run the below commands to install Cluster Overprovisioner <br />
 <br />
 kubectl apply -f class.yaml <br />
 kubectl apply -f ballon-deploy.yaml <br />
 
-#### Sealed Secrets
+#### Sealed Secrets:
 #### Run the below commands to install and validate Sealed Secrets
 helm install sealed-secrets -n kube-system --set-string fullnameOverride=sealed-secrets-controller sealed-secrets/sealed-secrets <br />
 echo -n bar | kubectl create secret generic mysecret --dry-run=client --from-file=foo=/dev/stdin -o json >mysecret.json <br />
